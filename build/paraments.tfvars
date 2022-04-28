@@ -1,31 +1,23 @@
-variable "cluster_name" {
-  default = "k8s-demo"
-}
+cluster_name = "k8s-demo"
 
-variable "aws_region" {
-  default = "us-west-2"
-}
+aws_region = "us-west-2"
 
-variable "k8s_version" {
-  default = "1.21"
-}
+ECSInstanceIMA = "ami-0d96b0a3faa64aa79"
 
-variable "nodes_instances_sizes" {
-  default = [
-    "t3.large"
-  ]
-}
+ECSInstanceType = "t2.medium"
 
-variable "auto_scale_options" {
-  default = {
+k8s_version = "1.21"
+
+nodes_instances_sizes = "t3.large"
+
+auto_scale_options = {
     min     = 2
     max     = 4
     desired = 2
-  }
 }
 
-variable "auto_scale_cpu" {
-  default = {
+auto_scale_cpu = {
+
     scale_up_threshold  = 80
     scale_up_period     = 60
     scale_up_evaluation = 2
@@ -37,5 +29,4 @@ variable "auto_scale_cpu" {
     scale_down_evaluation = 2
     scale_down_cooldown   = 300
     scale_down_remove     = -1
-  }
 }

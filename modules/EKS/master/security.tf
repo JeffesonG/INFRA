@@ -26,3 +26,12 @@ resource "aws_security_group_rule" "cluster_ingress_https" {
   security_group_id = aws_security_group.cluster_master_sg.id
   type              = "ingress"
 }
+resource "aws_security_group_rule" "cluster_ingress_http" {
+  cidr_blocks = ["0.0.0.0/0"]
+  from_port   = 80
+  to_port     = 80
+  protocol    = "tcp"
+
+  security_group_id = aws_security_group.cluster_master_sg.id
+  type              = "ingress"
+}
