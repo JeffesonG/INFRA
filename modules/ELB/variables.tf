@@ -4,6 +4,8 @@ variable "aws_region" {}
 
 variable "cluster_vpc" {}
 
-variable "private_subnet_1a" {}
+variable "public_subnet_1a" {}
 
-variable "private_subnet_1c" {}
+variable "public_subnet_1c" {}
+
+variable "certificateSSL" {}

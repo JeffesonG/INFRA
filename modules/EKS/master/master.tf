@@ -11,11 +11,16 @@ resource "aws_eks_cluster" "eks_cluster" {
     ]
 
     subnet_ids = [
-        var.private_subnet_1a.id,
-        var.private_subnet_1c.id
+      var.private_subnet_1a,
+      var.private_subnet_1c
     ]
 
   }
+
+  depends_on = [
+    aws_iam_role_policy_attachment.eks-cluster-service,
+    aws_iam_role_policy_attachment.AmazonEKSVPC
+  ]
 
   tags = {
     "kubernetes.io/cluster/${var.cluster_name}" = "shared"

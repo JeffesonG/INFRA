@@ -1,9 +1,8 @@
 resource "aws_security_group" "elb-security-group" {
   name   = "${var.cluster_name}-AllowELB"
-  vpc_id = var.vpc_id
+  vpc_id = var.cluster_vpc
 
   ingress {
-    description = "HTTP from VPC"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
@@ -11,10 +10,16 @@ resource "aws_security_group" "elb-security-group" {
   }
 
   ingress {
-    description = "TLS from VPC"
-    from_port   = 433
-    to_port     = 433
+    from_port   = 443
+    to_port     = 443
     protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = -1
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
